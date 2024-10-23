@@ -36,23 +36,24 @@ class MLCFilter:
 
 def get_devices() -> List[str]:
     return [
-        "LSM6DSRX",    # robert2
-        "ISM330DHCX",  # robert2
-        "ASM330LHHX",    # robert2 lp
-        "ASM330LHHXG1",  # robert2 lp
-        "ASM330LHB",     # robert2 lp
-        "IIS2ICLX",  # berkeley
-        "LSM6DSOX",    # swan 2.5
-        "LSM6DSO32X",  # swan 2.7
-        "LSM6DSV16X",  # swan 3
-        "LSM6DSV32X",  # swan 3
-        "ST1VAFE6AX",  # swan 3
-        "LSM6DSV16BX",  # swan3b
-        "ISM330BX",     # swan3b
-        "LIS2DUX12",   # smart xl
-        "LIS2DUXS12",  # smart xl
-        "IIS2DULPX",   # smart xl cut4
-        "ST1VAFE3BX",  # smart xl cut4
+        "LSM6DSRX",
+        "ISM330DHCX",
+        "ASM330LHHX",
+        "ASM330LHHXG1",
+        "ASM330LHB",
+        "ASM330LHBG1",
+        "IIS2ICLX",
+        "LSM6DSOX",
+        "LSM6DSO32X",
+        "LSM6DSV16X",
+        "LSM6DSV32X",
+        "ST1VAFE6AX",
+        "LSM6DSV16BX",
+        "ISM330BX",
+        "LIS2DUX12",
+        "LIS2DUXS12",
+        "IIS2DULPX",
+        "ST1VAFE3BX",
     ]
 
 
@@ -161,7 +162,8 @@ def get_accelerometer_odr(device_name) -> Optional[List[str]]:
         accelerometer_odr = ["12.5 Hz", "26 Hz", "52 Hz", "104 Hz",
                              "208 Hz", "416 Hz", "833 Hz"]
     elif device_name in ["LSM6DSRX", "ISM330DHCX", "ASM330LHHX",
-                         "ASM330LHHXG1", "ASM330LHB", "IIS2ICLX"]:
+                         "ASM330LHHXG1", "ASM330LHB", "ASM330LHBG1",
+                         "IIS2ICLX"]:
         accelerometer_odr = ["12.5 Hz", "26 Hz", "52 Hz", "104 Hz", "208 Hz",
                              "416 Hz", "833 Hz", "1666 Hz", "3332 Hz",
                              "6667 Hz"]
@@ -188,7 +190,7 @@ def get_accelerometer_odr(device_name) -> Optional[List[str]]:
 def get_gyroscope_fs(device_name) -> Optional[List[str]]:
     gyroscope_fs = None
     if device_name in ["LSM6DSRX", "ISM330DHCX", "ASM330LHHX",
-                       "ASM330LHHXG1", "ASM330LHB", "IIS2ICLX"]:
+                       "ASM330LHHXG1", "ASM330LHB", "ASM330LHBG1", "IIS2ICLX"]:
         gyroscope_fs = ["125 dps", "250 dps", "500 dps", "1000 dps",
                         "2000 dps", "4000 dps"]
     elif device_name in ["LSM6DSOX", "LSM6DSO32X"]:
@@ -208,7 +210,7 @@ def get_gyroscope_fs(device_name) -> Optional[List[str]]:
 def get_gyroscope_odr(device_name) -> Optional[List[str]]:
     gyroscope_odr = None
     if device_name in ["LSM6DSRX", "ISM330DHCX", "ASM330LHHX",
-                       "ASM330LHHXG1", "ASM330LHB", "IIS2ICLX"]:
+                       "ASM330LHHXG1", "ASM330LHB", "ASM330LHBG1", "IIS2ICLX"]:
         gyroscope_odr = ["12.5 Hz", "26 Hz", "52 Hz", "104 Hz", "208 Hz",
                          "416 Hz", "833 Hz", "1666 Hz", "3332 Hz", "6667 Hz"]
     elif device_name == "ISM330BX":
@@ -504,7 +506,7 @@ def ucf_generator(
     f = open(gen_ucf_path, "a+", encoding="ascii")
 
     if device_name in ["LSM6DSRX", "ISM330DHCX", "ASM330LHHX", "ASM330LHHXG1",
-                       "ASM330LHB", "IIS2ICLX"]:
+                       "ASM330LHB", "ASM330LHBG1", "IIS2ICLX"]:
         max_dectree_classes = 256
     elif device_name in get_devices():
         max_dectree_classes = 16
